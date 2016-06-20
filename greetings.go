@@ -96,7 +96,7 @@ func UpdateGreeting(c *gin.Context) {
 }
 
 func DeleteGreeting(c *gin.Context) {
-	if _, err := CheckAndDecodeToken(c.Query("token")); err != nil {
+	if token, err := CheckAndDecodeToken(c.Query("token")); err != nil {
 		c.JSON(403, gin.H{"error": "Invalid token!"})
   } else {
 		if token.Claims["admin"] != "true"{

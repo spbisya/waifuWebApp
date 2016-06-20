@@ -11,7 +11,7 @@ var dbmap = initDb()
 
 func main() {
 	r := gin.Default()
-
+r.LoadHTMLGlob("templates/*.tmpl")
 	r.Use(Cors())
 
 	r.POST("/register", Register)

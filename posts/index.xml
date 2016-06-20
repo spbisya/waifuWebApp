@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Waifu Sim</title>
+    <link>https://spbisya.github.io/waifuWebApp/posts/</link>
+    <description>Recent content in Posts on Waifu Sim</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Jun 2016 12:21:44 +0300</lastBuildDate>
+    <atom:link href="https://spbisya.github.io/waifuWebApp/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Update</title>
+      <link>https://spbisya.github.io/waifuWebApp/posts/second_post/</link>
+      <pubDate>Mon, 20 Jun 2016 12:21:44 +0300</pubDate>
+      
+      <guid>https://spbisya.github.io/waifuWebApp/posts/second_post/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://i3.kym-cdn.com/photos/images/newsfeed/001/011/090/6c8.jpg&#34; alt=&#34;Smiley face&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Site for WaifuSim</title>
+      <link>https://spbisya.github.io/waifuWebApp/posts/first_post/</link>
+      <pubDate>Mon, 20 Jun 2016 11:56:21 +0300</pubDate>
+      
+      <guid>https://spbisya.github.io/waifuWebApp/posts/first_post/</guid>
+      <description>&lt;p&gt;Шалом, товарищи! В этот прекрасный день вы сможете наслаждаться нашим новым сайтом!&lt;br&gt;
+&lt;img src=&#34;http://pa1.narvii.com/5989/fcb05ed1c101c3dba7eb7d02351be00c5d12ed77_hq.gif&#34; alt=&#34;Smiley face&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

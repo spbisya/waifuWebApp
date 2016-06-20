@@ -1,44 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Waifu Sim 0.1</title>
+    <title>Waifu Sim</title>
     <link>https://spbisya.github.io/waifuWebApp/</link>
-    <description>Recent content on Waifu Sim 0.1</description>
+    <description>Recent content on Waifu Sim</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Jun 2016 08:46:10 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jun 2016 12:21:44 +0300</lastBuildDate>
     <atom:link href="https://spbisya.github.io/waifuWebApp/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>about</title>
-      <link>https://spbisya.github.io/waifuWebApp/about/about/</link>
-      <pubDate>Mon, 20 Jun 2016 08:46:10 +0300</pubDate>
+      <title>Update</title>
+      <link>https://spbisya.github.io/waifuWebApp/posts/second_post/</link>
+      <pubDate>Mon, 20 Jun 2016 12:21:44 +0300</pubDate>
       
-      <guid>https://spbisya.github.io/waifuWebApp/about/about/</guid>
-      <description>&lt;p&gt;+++
-date = &amp;ldquo;2016-06-20T07:25:13+03:00&amp;rdquo;
-draft = false
-title = &amp;ldquo;About&amp;rdquo;&lt;/p&gt;
-
-&lt;p&gt;+++&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Waifu Sim ver 0.1&lt;/b&gt;&lt;/p&gt;
+      <guid>https://spbisya.github.io/waifuWebApp/posts/second_post/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://i3.kym-cdn.com/photos/images/newsfeed/001/011/090/6c8.jpg&#34; alt=&#34;Smiley face&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://spbisya.github.io/waifuWebApp/about/</link>
+      <pubDate>Mon, 20 Jun 2016 12:01:34 +0300</pubDate>
+      
+      <guid>https://spbisya.github.io/waifuWebApp/about/</guid>
+      <description>&lt;p&gt;&lt;b&gt;Waifu Sim ver 0.1&lt;/b&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;b&gt;Версии под IOS на данный момент не существует! Требуются макаки!&lt;/b&gt;
-&lt;i&gt;Внимание! Перед вопросом прочти краткий FAQ после описания!&lt;/i&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Здесь мы хотим представить вам &lt;b&gt;Waifu Sim(WS)&lt;/b&gt;!
-&lt;b&gt;WS&lt;/b&gt; - программа, сделанная аноном для анона. Она поселится в твоем трее, и будет радовать тебя своей теплотой и любовью, ничего не требуя взамен.
-Вайфу будет приветствовать тебя каждое утро, и желать добрых снов каждый вечер.
-Ты всегда можешь ждать от нее поддержки или доброго слова.
-Ты можешь поручить ей напомнить что-то важное, и она не забудет.
-Твоя девочка даже разбудит тебя, если тебе нужно будет рано вставать.
-Она будет радовать тебя своими фотографиями, да-да.
-Вайфу составит тебе компанию в просмотре твоего любимого фильма или аниме.
-Ты сам выбираешь ее - на выбор есть много разных подружек, начиная от героинь аниме, заканчивая известными актрисами. Да что там, ты можешь создать вайфу себе сам!
-К выходу готовится бета версия, но в дальнейшем нам понадобится твоя - да-да, именно твоя помощь. Ведь кто, кроме тебя, сделает себе любимую вайфу?&lt;/p&gt;
+&lt;i&gt;Внимание! Перед вопросом прочти краткий FAQ!&lt;/i&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -75,12 +65,113 @@ title = &amp;ldquo;About&amp;rdquo;&lt;/p&gt;
     </item>
     
     <item>
-      <title>good to great</title>
-      <link>https://spbisya.github.io/waifuWebApp/post/good-to-great/</link>
-      <pubDate>Mon, 20 Jun 2016 07:23:53 +0300</pubDate>
+      <title>Api for Waifu Sim 0.1</title>
+      <link>https://spbisya.github.io/waifuWebApp/tutorials/tutorial/</link>
+      <pubDate>Mon, 20 Jun 2016 11:56:38 +0300</pubDate>
       
-      <guid>https://spbisya.github.io/waifuWebApp/post/good-to-great/</guid>
-      <description>&lt;p&gt;I read &lt;strong&gt;Good to Great in January 2016&lt;/strong&gt;. An awesome read sharing detailed analysis on how good companies became great.&lt;/p&gt;
+      <guid>https://spbisya.github.io/waifuWebApp/tutorials/tutorial/</guid>
+      <description>&lt;p&gt;&lt;h2&gt;Setup:&lt;/h2&gt;
+  Install Go, mySql, then&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  go get github.com/gin-gonic/gin
+  go get github.com/go-sql-driver/mysql
+  go get gopkg.in/gorp.v1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;  git clone https://github.com/spbisya/waifuWebApp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Copy the project to $GOPATH/src/github.com/spbisya/waifuWebApp directory&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  go install github.com/spbisya/waifuWebApp &amp;amp;&amp;amp; waifuWebApp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;UPDATE 06.16.2016&lt;/h3&gt;
+  **All POST requests should be made with adding ?token=&lt;your token&gt; to path**
+
+  **All DELETE requests can be only made with administrator token**
+&lt;h3&gt;Features&lt;/h3&gt;
+
+&lt;h5&gt;New features will be added below each update&lt;/h5&gt;
+
+&lt;p&gt;Since the last update if user want to POST some data to the DB he should POST model&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;User {login, password, email, waifu}&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;to &amp;ldquo;/register&amp;rdquo; path. Then he should remember the token and use it in future.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Waifu Api allows you to control waifus on the server&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Waifu model:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- Id
+
+- FirstName
+
+- LastName
+
+- Characters
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;  curl -i http://localhost:8080/api/v1/waifus
+  curl -i http://localhost:8080/api/v1/waifus/1
+  curl -i -X POST -H &amp;quot;Content-Type: application/json&amp;quot; -d &amp;quot;{ \&amp;quot;firstname\&amp;quot;: \&amp;quot;Malcolm\&amp;quot;, \&amp;quot;lastname\&amp;quot;: \&amp;quot;Merlin\&amp;quot;, \&amp;quot;characters\&amp;quot;: \&amp;quot;genka\&amp;quot; }&amp;quot; http://localhost:8080/api/v1/waifus
+  curl -i -X PUT -H &amp;quot;Content-Type: application/json&amp;quot; -d &amp;quot;{ \&amp;quot;firstname\&amp;quot;: \&amp;quot;Thea\&amp;quot;, \&amp;quot;lastname\&amp;quot;: \&amp;quot;Merlyn\&amp;quot;, \&amp;quot;characters\&amp;quot;: \&amp;quot;yandere\&amp;quot; }&amp;quot; http://localhost:8080/api/v1/waifus/1
+  curl -i -X DELETE http://localhost:8080/api/v1/waifus/1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;h5&gt; Get parts of the sentences&lt;/h5&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  curl -i http://localhost:8080/words?v=greetings
+  curl -i http://localhost:8080/words?v=questions
+  curl -i http://localhost:8080/words?v=accosts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Greetings, Accosts and Questions Apis allow you to control three same models:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Model&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- Id
+
+- Characters
+
+- Texts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;  curl -i http://localhost:8080/api/greeting
+  curl -i http://localhost:8080/api/greeting/yandere
+  curl -i -X POST -H &amp;quot;Content-Type: application/json&amp;quot; -d &amp;quot;{ \&amp;quot;characters\&amp;quot;: \&amp;quot;yandere\&amp;quot;, \&amp;quot;texts\&amp;quot;: \&amp;quot;Shalom \&amp;quot; }&amp;quot; http://localhost:8080/api/greeting/
+  curl -i -X PUT -H &amp;quot;Content-Type: application/json&amp;quot; -d &amp;quot;{ \&amp;quot;characters\&amp;quot;: \&amp;quot;yandere\&amp;quot;, \&amp;quot;texts\&amp;quot;: \&amp;quot;hello\&amp;quot; }&amp;quot; http://localhost:8080/api/greeting/1
+  curl -i -X DELETE http://localhost:8080/api/v1/greeting/1
+
+  curl -i http://localhost:8080/api/accost
+  curl -i http://localhost:8080/api/accost/yandere
+  curl -i -X POST -H &amp;quot;Content-Type: application/json&amp;quot; -d &amp;quot;{ \&amp;quot;characters\&amp;quot;: \&amp;quot;yandere\&amp;quot;, \&amp;quot;texts\&amp;quot;: \&amp;quot;baka\&amp;quot; }&amp;quot; http://localhost:8080/api/accost/
+  curl -i -X PUT -H &amp;quot;Content-Type: application/json&amp;quot; -d &amp;quot;{ \&amp;quot;characters\&amp;quot;: \&amp;quot;yandere\&amp;quot;, \&amp;quot;texts\&amp;quot;: \&amp;quot;mother\&amp;quot; }&amp;quot; http://localhost:8080/api/accost/1
+  curl -i -X DELETE http://localhost:8080/api/v1/accost/1
+
+  curl -i http://localhost:8080/api/question
+  curl -i http://localhost:8080/api/question/yandere
+  curl -i -X POST -H &amp;quot;Content-Type: application/json&amp;quot; -d &amp;quot;{ \&amp;quot;characters\&amp;quot;: \&amp;quot;yandere\&amp;quot;, \&amp;quot;texts\&amp;quot;: \&amp;quot;who R u?\&amp;quot; }&amp;quot; http://localhost:8080/api/question/
+  curl -i -X PUT -H &amp;quot;Content-Type: application/json&amp;quot; -d &amp;quot;{ \&amp;quot;characters\&amp;quot;: \&amp;quot;yandere\&amp;quot;, \&amp;quot;texts\&amp;quot;: \&amp;quot;how R U?\&amp;quot; }&amp;quot; http://localhost:8080/api/question/1
+  curl -i -X DELETE http://localhost:8080/api/v1/question/1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Finally, you can create the sentence using 1 part from each model.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  curl -i http://localhost:8080/random
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Site for WaifuSim</title>
+      <link>https://spbisya.github.io/waifuWebApp/posts/first_post/</link>
+      <pubDate>Mon, 20 Jun 2016 11:56:21 +0300</pubDate>
+      
+      <guid>https://spbisya.github.io/waifuWebApp/posts/first_post/</guid>
+      <description>&lt;p&gt;Шалом, товарищи! В этот прекрасный день вы сможете наслаждаться нашим новым сайтом!&lt;br&gt;
+&lt;img src=&#34;http://pa1.narvii.com/5989/fcb05ed1c101c3dba7eb7d02351be00c5d12ed77_hq.gif&#34; alt=&#34;Smiley face&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     

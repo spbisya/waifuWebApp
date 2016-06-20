@@ -8,11 +8,11 @@
   go get gopkg.in/gorp.v1
   ```
   ```
-  git clone https://github.com/spbisya/restApi
+  git clone https://github.com/spbisya/waifuWebApp
   ```
-  Copy the project to $GOPATH/src/github.com/spbisya/restApi directory
+  Copy the project to $GOPATH/src/github.com/spbisya/waifuWebApp directory
   ```
-  go install github.com/spbisya/restApi && restApi
+  go install github.com/spbisya/waifuWebApp && waifuWebApp
   ```
   
 ##UPDATE 06.16.2016

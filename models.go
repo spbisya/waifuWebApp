@@ -1,6 +1,7 @@
 package main
 
 import (
+  jwt "github.com/dgrijalva/jwt-go"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -68,4 +69,13 @@ type PostForSingle struct{
 type Page struct {
 	Number int
 	Current bool
+}
+
+type MyCustomClaims struct {
+    User string `json:"foo"`
+		Password string `json:"password"`
+		Email string `json:"email"`
+		Waifu string `json:"waifu"`
+		Admin string `json:"admin"`
+    jwt.StandardClaims
 }

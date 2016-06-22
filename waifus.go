@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"strconv"
-
+jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -134,7 +134,7 @@ func DeleteWaifu(c *gin.Context) {
 	if token, err := CheckAndDecodeToken(c.Query("token")); err != nil {
 		c.JSON(403, gin.H{"error": "Invalid token!"})
   } else {
-		if token.Claims["admin"] != "true"{
+	if claims := token.Claims.(jwt.MapClaims);claims["admin"] != "true"{
 			c.JSON(403, gin.H{"error": "You're not admin!"})
 		} else {
 	id := c.Params.ByName("id")

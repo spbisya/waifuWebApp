@@ -10,7 +10,7 @@
   	_ "github.com/go-sql-driver/mysql"
     jwt "github.com/dgrijalva/jwt-go"
   )
-  
+
   var flagKey = flag.String("key", "VelesYang", "")
   var super_secret = "3ImfMpd86d3H0VNcV4Su1DE5jIKhIX94"
 
@@ -31,15 +31,19 @@
     if login != "" && pass != "" && email != "" && waifu != "" {
       var key interface{}
       key, _ = loadData(*flagKey)
+
+      claims := MyCustomClaims{
+        login,
+        pass,
+        email,
+        waifu,
+        admin,
+        jwt.StandardClaims{
+            ExpiresAt: time.Now().Add(time.Hour * 24).Unix(),
+        },
+      }
       // Create the token
-      token := jwt.New(jwt.SigningMethodHS256)
-      // Set some claims
-      token.Claims["user"] = login
-      token.Claims["password"] = pass
-      token.Claims["email"] = email
-      token.Claims["waifu"] = waifu
-      token.Claims["admin"] = admin
-      token.Claims["exp"] = time.Now().Add(time.Hour * 24).Unix()
+      token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
       // Sign and get the complete encoded token as a string
       tokenString, err := token.SignedString(key)
 

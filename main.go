@@ -1,6 +1,7 @@
 package main
 
 import (
+	"net/http"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 
@@ -11,7 +12,12 @@ var dbmap = initDb()
 
 func main() {
 	r := gin.Default()
-r.LoadHTMLGlob("templates/*.tmpl")
+	r.LoadHTMLGlob("*.html")
+//	r.StaticFile("/index.html", "index.html")
+	r.StaticFS("/css", http.Dir("css"))
+	r.StaticFS("/img", http.Dir("img"))
+	r.StaticFS("/js", http.Dir("js"))
+	r.StaticFS("/less", http.Dir("less"))
 	r.Use(Cors())
 
 	r.POST("/register", Register)
@@ -26,7 +32,15 @@ r.LoadHTMLGlob("templates/*.tmpl")
 	}
 
   r.GET("/words", GetWords)
-
+	r.GET("/", func(c *gin.Context) {
+			    c.HTML(http.StatusOK, "index.html", gin.H{})
+			})
+	r.GET("/about", func(c *gin.Context) {
+			    c.HTML(http.StatusOK, "about.html", gin.H{})
+			})
+	r.GET("/tutorial", func(c *gin.Context) {
+			    c.HTML(http.StatusOK, "tutorial.html", gin.H{})
+	    })
   v2 := r.Group("api/greeting")
 	{
 		v2.GET("/:characters", GetGreetingsChar)
@@ -51,8 +65,33 @@ r.LoadHTMLGlob("templates/*.tmpl")
 		v4.DELETE("/:id", DeleteQuestion)
 	}
 
-	r.GET("/random", GetRandomPhrase)
+	v5 := r.Group("api/post")
+	{
+		v5.GET("/", GetPosts)
+		v5.GET("/:id", GetPostsById)
+		v5.POST("/", PostPost)
+		v5.DELETE("/:id", DeletePost)
+	}
 
+	v6 := r.Group("post")
+	{
+		v6.GET("/:id", GetPostsForSiteById)
+	}
+	
+	r.GET("/randompost", GetRandomPost)
+
+	r.GET("/allposts", GetAllPosts)
+
+	r.GET("/random", GetRandomPhrase)
+	// r.GET("/templates/css/:file", func(c *gin.Context){
+	// 	file := c.Params.ByName("file")
+	// 	c.HTML(200, file, gin.H{})
+	// })
+	r.NoRoute(func(c *gin.Context) {
+		c.HTML(404, "caps.png.html", gin.H{
+				"title": "Main website",
+		})
+	})
 	r.Run(":8080")
 }
 

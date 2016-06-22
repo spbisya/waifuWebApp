@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta property="og:title" content="Api for Waifu Sim 0.1">
+
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2016-06-20">
+
+    <meta property="og:description" content="">
+    <meta property="og:url" content="/tutorial">
+    <meta property="og:site_name" content="Waifu Sim">
+
+    <meta name="generator" content="Hugo 0.16" />
+    <title>Api for Waifu Sim 0.1 &middot; Waifu Sim</title>
+
+  {{template "style"}}
+
+
+</head>
+<body>
+{{template "sidebar"}}
+<main>
+	<header>
+		<h1>Api for Waifu Sim 0.1</h1>
+	</header>
+
+	<article>
+		<p><h2>Setup:</h2>
+  Install Go, mySql, then</p>
+
+<pre><code>  go get github.com/gin-gonic/gin
+  go get github.com/go-sql-driver/mysql
+  go get gopkg.in/gorp.v1
+</code></pre>
+
+<pre><code>  git clone https://github.com/spbisya/waifuWebApp
+</code></pre>
+
+<p>Copy the project to $GOPATH/src/github.com/spbisya/waifuWebApp directory</p>
+
+<pre><code>  go install github.com/spbisya/waifuWebApp &amp;&amp; waifuWebApp
+</code></pre>
+
+<h3>UPDATE 06.16.2016</h3>
+  **All POST requests should be made with adding ?token=<your token> to path**
+
+  **All DELETE requests can be only made with administrator token**
+<h3>Features</h3>
+
+<h5>New features will be added below each update</h5>
+
+<p>Since the last update if user want to POST some data to the DB he should POST model</p>
+
+<p><strong>User {login, password, email, waifu}</strong></p>
+
+<p>to &ldquo;/register&rdquo; path. Then he should remember the token and use it in future.</p>
+
+<p><strong>Waifu Api allows you to control waifus on the server</strong></p>
+
+<p>Waifu model:</p>
+
+<pre><code>- Id
+
+- FirstName
+
+- LastName
+
+- Characters
+</code></pre>
+
+<pre><code>  curl -i http://localhost:8080/api/v1/waifus
+  curl -i http://localhost:8080/api/v1/waifus/1
+  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;firstname\&quot;: \&quot;Malcolm\&quot;, \&quot;lastname\&quot;: \&quot;Merlin\&quot;, \&quot;characters\&quot;: \&quot;genka\&quot; }&quot; http://localhost:8080/api/v1/waifus
+  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;firstname\&quot;: \&quot;Thea\&quot;, \&quot;lastname\&quot;: \&quot;Merlyn\&quot;, \&quot;characters\&quot;: \&quot;yandere\&quot; }&quot; http://localhost:8080/api/v1/waifus/1
+  curl -i -X DELETE http://localhost:8080/api/v1/waifus/1
+</code></pre>
+
+<p><h5> Get parts of the sentences</h5></p>
+
+<pre><code>  curl -i http://localhost:8080/words?v=greetings
+  curl -i http://localhost:8080/words?v=questions
+  curl -i http://localhost:8080/words?v=accosts
+</code></pre>
+
+<p><strong>Greetings, Accosts and Questions Apis allow you to control three same models:</strong></p>
+
+<p>Model</p>
+
+<pre><code>- Id
+
+- Characters
+
+- Texts
+</code></pre>
+
+<pre><code>  curl -i http://localhost:8080/api/greeting
+  curl -i http://localhost:8080/api/greeting/yandere
+  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;Shalom \&quot; }&quot; http://localhost:8080/api/greeting/
+  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;hello\&quot; }&quot; http://localhost:8080/api/greeting/1
+  curl -i -X DELETE http://localhost:8080/api/v1/greeting/1
+
+  curl -i http://localhost:8080/api/accost
+  curl -i http://localhost:8080/api/accost/yandere
+  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;baka\&quot; }&quot; http://localhost:8080/api/accost/
+  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;mother\&quot; }&quot; http://localhost:8080/api/accost/1
+  curl -i -X DELETE http://localhost:8080/api/v1/accost/1
+
+  curl -i http://localhost:8080/api/question
+  curl -i http://localhost:8080/api/question/yandere
+  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;who R u?\&quot; }&quot; http://localhost:8080/api/question/
+  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;how R U?\&quot; }&quot; http://localhost:8080/api/question/1
+  curl -i -X DELETE http://localhost:8080/api/v1/question/1
+</code></pre>
+
+<p><strong>Finally, you can create the sentence using 1 part from each model.</strong></p>
+
+<pre><code>  curl -i http://localhost:8080/random
+</code></pre>
+
+	</article>
+</main>
+
+<div id="bottom-nav" class="text-center center-block">
+	<a href="/" class="btn btn-default"><i class="fa fa-home"></i> Home</a>
+</div>
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+{{template "script"}}
+
+</body>
+</html>

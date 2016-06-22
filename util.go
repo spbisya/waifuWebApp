@@ -28,9 +28,16 @@ func initDb() *gorp.DbMap {
   dbmap.AddTableWithName(Greeting{}, "Greeting").SetKeys(true, "Id")
   dbmap.AddTableWithName(Accost{}, "Accost").SetKeys(true, "Id")
   dbmap.AddTableWithName(Question{}, "Question").SetKeys(true, "Id")
+	dbmap.AddTableWithName(Post{}, "Post").SetKeys(true, "Id").ColMap("text").SetMaxSize(65535)
 	err = dbmap.CreateTablesIfNotExists()
 	checkErr(err, "Create tables failed")
-
+	// _, err = dbmap.Exec("ALTER TABLE post DROP text;")
+	// _, err = dbmap.Exec("ALTER TABLE post ADD text VARCHAR(65535) AFTER title;")
+	// _, err = dbmap.Exec("ALTER TABLE post DROP tags;")
+	// _, err = dbmap.Exec("ALTER TABLE post ADD tags VARCHAR(65535) AFTER truncated;")
+	// _, err = dbmap.Exec("ALTER TABLE post DROP summary;")
+	// _, err = dbmap.Exec("ALTER TABLE post ADD summary VARCHAR(65535) AFTER tags;")
+	// checkErr(err, "Setting mode failed")
 	return dbmap
 }
 
@@ -157,4 +164,11 @@ func Reverse(s string) string {
         runes[i], runes[j] = runes[j], runes[i]
     }
     return string(runes)
+}
+
+func ReverseArray(s []Post) []Post{
+	for i,j:=0, len(s)-1;i<j;i,j=i+1, j-1 {
+		s[i], s[j] = s[j], s[i]
+	}
+	return s
 }

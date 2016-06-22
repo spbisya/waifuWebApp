@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta property="og:title" content="News">
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:description" content="">
+    <meta property="og:url" content="/allposts">
+    <meta property="og:site_name" content="Waifu Sim">
+
+    <title>Waifu Sim &middot; Waifu Sim</title>
+
+  {{template "style"}}
+
+</head>
+<body>
+
+{{template "sidebar"}}
+<header>
+<h1>Latest news</h1>
+</header>
+  <main>  {{range .Posts }}
+    <div class="panel-header">
+        <h3><a href="/post/{{.Post.Id}}">
+            {{ .Post.Title }}
+        </a><br><small>{{ .Post.CreatedAt }}</small></h3>
+      </div>
+      <div class="panel-body">
+      {{.Post.Summary}}
+      {{ if .Post.Truncated }}
+        ... <a href="/post/{{ .Post.Id }}">Read More</a>
+        {{end}}
+        </div>
+        <div class="panel-footer">
+          <small class="text-muted">
+            {{range .Tags}}
+          <a href="/tags/{{.}}">
+            <span class="label label-success">{{.}}</span></a>
+            {{end}}
+                </small>
+                        </div>
+            {{end}}
+            <div class="text-center center-block">
+          <nav>
+              <ul class="pagination">
+                {{if .IsFirst}}
+                <li  class="disabled" >
+                  <a href="#" aria-label="First">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                  </a>
+                </li>
+                {{else}}
+                <li>
+                  <a href="/allposts?page=1" aria-label="First">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                  </a>
+                </li>
+                {{end}}
+                {{if .IsPrevious}}
+                <li>
+                  <a href="/allposts?page={{.Previous}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                {{else}}
+                <li class="disabled">
+                  <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                {{end}}
+                {{range .Count}}
+                {{if .Current}}
+                <li class="active"><a href="/allposts?page={{.Number}}">{{.Number}}</a></li>
+                {{else}}
+                  <li><a href="/allposts?page={{.Number}}">{{.Number}}</a></li>
+                {{end}}
+                {{end}}
+                {{if .IsNext}}
+                <li>
+                  <a href="/allposts?page={{.Next}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+                {{else}}
+                <li class="disabled">
+                  <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+                {{end}}
+                {{if .IsLast}}
+                <li  class="disabled">
+                  <a href="#" aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                  </a>
+                </li>
+                {{else}}
+                <li>
+                  <a href="/allposts?page={{.Last}}" aria-label="First">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                  </a>
+                </li>
+                {{end}}
+              </ul>
+            </nav>
+            </div>
+</main>
+            </div>
+          </div>
+        </div>
+
+
+
+  {{template "script"}}
+
+
+</body>
+</html>

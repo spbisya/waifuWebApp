@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+      <meta name="description" content="">
+      <meta property="og:title" content="RandomPost">
+      <meta property="og:type" content="website">
+      <meta property="og:description" content="">
+      <meta property="og:url" content="/post/{{.Post.Id}}">
+      <meta property="og:site_name" content="Waifu Sim">
+      <title>Waifu Sim &middot; Waifu Sim</title>
+      {{template "style"}}
+   </head>
+   <body>
+      {{template "sidebar"}}
+      <main>
+      <header>
+         <h1>{{.Post.Title}}</h1>
+         <div class="title-date clearfix">
+            <strong class="text-muted">{{.Post.CreatedAt}}</strong><br>
+          <div class="text-muted"><strong>Tags:</strong> {{range .Tags}}
+          <a href="/tags/{{.}}">
+<span class="label label-success">{{.}}</span></a>
+            {{end}}
+         </div>
+      </header>
+<article>
+{{.Post.Text}}
+</article>
+                 </main>
+<div class='wrapper text-center'>
+      <div class="btn-group" >
+        {{if .Left}}
+<button type="button" class="btn btn-default"><strong><a href="/post/{{.LeftId}}"><i class="fa fa-angle-double-left" aria-hidden="true"></i> <span class="hidden-xs">Previous</span></a></strong></button>{{end}}
+<button type="button" class="btn btn-default"><strong><a href="/allposts"><i class="fa fa-home" aria-hidden="true"></i> <span class="hidden-xs">Home</span></a></strong></button>
+  {{if .Right}}<button type="button" class="btn btn-default"><strong><a href="/post/{{.RightId}}"><span class="hidden-xs">Next</span> <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></strong></button>{{end}}
+</div>
+    </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      {{template "script"}}
+   </body>
+</html>

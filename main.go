@@ -77,22 +77,64 @@ func main() {
 	{
 		v6.GET("/:id", GetPostsForSiteById)
 	}
-	
+
+	v7 := r.Group("waifus")
+	{
+		v7.GET("/new", func(c *gin.Context) {
+						c.HTML(http.StatusOK, "waifu_add.html", gin.H{})
+				})
+		v7.POST("/waifuAdd", GetWaifuNew)
+		v7.GET("", GetAllWaifusHTML)
+	}
+
+	v8 := r.Group("questions")
+	{
+		v8.GET("/new", func(c *gin.Context) {
+						c.HTML(http.StatusOK, "part_add.html", gin.H{
+							"Name": "Question",
+							"Type": "question",
+						})
+				})
+		v8.POST("/questionAdd", GetQuestionNew)
+		v8.GET("", GetAllQuestionsHTML)
+	}
+
+	v9 := r.Group("greetings")
+	{
+		v9.GET("/new", func(c *gin.Context) {
+						c.HTML(http.StatusOK, "part_add.html", gin.H{
+							"Name": "Greeting",
+							"Type": "greeting",
+						})
+				})
+		v9.POST("/greetingAdd", GetGreetingNew)
+		v9.GET("", GetAllGreetingsHTML)
+	}
+
+	v10 := r.Group("accosts")
+	{
+		v10.GET("/new", func(c *gin.Context) {
+						c.HTML(http.StatusOK, "part_add.html", gin.H{
+							"Name": "Accost",
+							"Type": "accost",
+						})
+				})
+		v10.POST("/accostAdd", GetAccostNew)
+		v10.GET("", GetAllAccostsHTML)
+	}
+
 	r.GET("/randompost", GetRandomPost)
 
 	r.GET("/allposts", GetAllPosts)
 
 	r.GET("/random", GetRandomPhrase)
-	// r.GET("/templates/css/:file", func(c *gin.Context){
-	// 	file := c.Params.ByName("file")
-	// 	c.HTML(200, file, gin.H{})
-	// })
+
 	r.NoRoute(func(c *gin.Context) {
 		c.HTML(404, "caps.png.html", gin.H{
 				"title": "Main website",
 		})
 	})
-	r.Run(":8080")
+	r.Run(":80")
 }
 
 

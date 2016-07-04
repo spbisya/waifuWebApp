@@ -65,7 +65,9 @@
           c.JSON(400, "Token creation error")
         //  checkErr(err, "Token creation error: ")
         }
-    // curl -i -X POST -H "Content-Type: application/json" -d "{ \"login\": \"Thea\", \"password\": \"Queen\", \"email\": \"sexy@gmail.com\", \"waifu\": \"asuna\" }" http://localhost:8080/register
+
+        // ?token=QGWi3yN4RZjZ7TowJs6067FcWyJfgzzbou9As05Bo1@FjxtfPzj5kwLbPJJXRifqb@23m4uTpxp7D@JSEK1MZwMbgRritUFBR4MWkaULhm2iNYHiUt1egxq13OW056GtCdo3ZN9qNTr7gyW4PMGKsSgmFGIf.k6xqtVjhTtMkRnW8dDm6zyzRsHzEQVzJkK07n8O6q3LBPQgH8zC9GXQh7IWG2s91YCce.SPWenSdUqrGIuEUyiRS85KM4R1qWUPf1Y2Iclrsh9ro8W@pf4TWs28lFKVXdsAA9pp4ZtJ3dX8gbkJgF6.6fZ.GnxAlHFLRhj0fiSukUq4yWJR26pCyjvMDOGXXwS3f8OiaDrOXi5eqU1hJXywcfQ4UfdVh4vSZSdsPAE0CgazZ@R4dRlsSjv9h.Xs.u7m.2d75S
+    // curl -i -X POST -H "Content-Type: application/json" -d "{ \"login\": \"Thea\", \"password\": \"Queen\", \"email\": \"sexy@gmail.com\", \"waifu\": \"asuna\" }" http://volhgroup.tk/register
   } else {
     c.JSON(400, gin.H{"error": "Some fields are empty"})
   }

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta property="og:title" content="Waifus">
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:description" content="">
+    <meta property="og:url" content="/{{.Type}}s">
+    <meta property="og:site_name" content="Waifu Sim">
+
+    <title>Waifu Sim &middot; Waifu Sim</title>
+
+  {{template "style"}}
+
+</head>
+<body>
+
+{{template "sidebar"}}
+<header>
+<h1>{{.Name}}s</h1>
+<button type="button" class="btn btn-default"><strong><a href="/{{.Type}}s/new"><i class="fa fa-plus-square-o" aria-hidden="true"></i> <span class="hidden-xs">Create {{.Type}}</span></a></strong></button>
+</header>
+  <main>
+    {{$type := .Type}}
+    {{range .Parts }}
+      <div class="panel-body">
+      For character <b>{{.Characters}}</b> {{$type}} is <b>{{.Texts}}</b>
+        </div>
+        {{end}}
+        <div class="text-center center-block">
+        <nav>
+          <ul class="pagination">
+            {{if .IsFirst}}
+            <li  class="disabled" >
+              <a href="#" aria-label="First">
+                <span aria-hidden="true">&laquo;&laquo;</span>
+              </a>
+            </li>
+            {{else}}
+            <li>
+              <a href="/{{.Type}}s?page=1" aria-label="First">
+                <span aria-hidden="true">&laquo;&laquo;</span>
+              </a>
+            </li>
+            {{end}}
+            {{if .IsPrevious}}
+            <li>
+              <a href="/{{.Type}}s?page={{.Previous}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            {{else}}
+            <li class="disabled">
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            {{end}}
+            {{if .Less}}
+            <li class="disabled">
+                <span aria-hidden="true">...</span>
+            </li>
+            {{end}}
+            {{range .Count}}
+            {{if .Current}}
+            <li class="active"><a href="/{{$type}}s?page={{.Number}}">{{.Number}}</a></li>
+            {{else}}
+              <li><a href="/{{$type}}s?page={{.Number}}">{{.Number}}</a></li>
+            {{end}}
+            {{end}}
+            {{if .More}}
+            <li class="disabled">
+                <span aria-hidden="true">...</span>
+            </li>
+            {{end}}
+            {{if .IsNext}}
+            <li>
+              <a href="/{{.Type}}s?page={{.Next}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+            {{else}}
+            <li class="disabled">
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+            {{end}}
+            {{if .IsLast}}
+            <li  class="disabled">
+              <a href="#" aria-label="Last">
+                <span aria-hidden="true">&raquo;&raquo;</span>
+              </a>
+            </li>
+            {{else}}
+            <li>
+              <a href="/{{.Type}}s?page={{.Last}}" aria-label="First">
+                <span aria-hidden="true">&raquo;&raquo;</span>
+              </a>
+            </li>
+            {{end}}
+          </ul>
+        </nav>
+        </div>
+        </main>
+                  </div>
+                </div>
+              </div>
+        {{template "script"}}
+      </body>
+      </html>

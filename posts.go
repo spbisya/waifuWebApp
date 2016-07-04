@@ -79,7 +79,7 @@ func PostPost(c *gin.Context) {
 	} else {
 		c.JSON(400, gin.H{"error": "Fields are empty"})
 	}
-	// curl -i -X POST -H "Content-Type: application/json" -d "{ \"title\": \"Second Post\",\"tags\": \"Bootstrap;mac;PHP;Waifu Sim\", \"text\": \"\" }" http://localhost:8080/api/post/
+	// curl -i -X POST -H "Content-Type: application/json" -d "{ \"title\": \"Second Post\",\"tags\": \"Bootstrap;mac;PHP;Waifu Sim\", \"text\": \"dsfsdffds\" }" http://localhost:8080/api/post/
 }
 
 

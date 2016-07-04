@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+      <meta name="description" content="">
+      <meta property="og:title" content="RandomPost">
+      <meta property="og:type" content="website">
+      <meta property="og:description" content="">
+      <meta property="og:url" content="/{{.Type}}s/{{.Type}}Add">
+      <meta property="og:site_name" content="Waifu Sim">
+      <title>Waifu Sim &middot; Waifu Sim</title>
+      {{template "style"}}
+   </head>
+   <body>
+      {{template "sidebar"}}
+      <main>
+      <header>
+        <h1>Create {{.Name}}</h1>
+      </header>
+      <article>
+        <form role = "form" action="/{{.Type}}s/{{.Type}}Add" method="post" data-toggle="validator">
+
+     <div class = "form-group">
+        <label for = "{{.Type}}">{{.Name}} text</label>
+        <input type = "text" name="{{.Type}}" class = "form-control" id = "{{.Type}}" placeholder = "Enter {{.Type}}"  data-error="Bruh, {{.Type}} can't be null" required>
+    <div class="help-block with-errors"></div>
+     </div>
+
+     <fieldset class="form-group">
+    <label for="character">Character</label>
+    <select class="form-control" id="character" name="character">
+      <option>Moe</option>
+      <option>Tsundere</option>
+      <option>Maid</option>
+      <option>Kudere</option>
+      <option>Genke</option>
+      <option>Sister</option>
+      <option>Adult</option>
+      <option>Child</option>
+      <option>Default</option>
+    </select>
+  </fieldset>
+
+     <div class="form-group">
+     <button type="submit" class="btn btn-primary">Create {{.Name}}</button>
+   </div>
+  </form>
+
+
+  </article>
+</main>
+
+</div>
+</div>
+</div>
+</div>
+{{template "script"}}
+<script src="/js/validator.js"></script>
+</body>
+</html>

@@ -23,6 +23,16 @@ func GetQuestionsChar(c *gin.Context) {
 	// curl -i http://localhost:8080/api/v1/waifus/1
 }
 
+func GetAllQuestionsHTML(c *gin.Context) {
+	GetAllPartsHTML("question", "Question", 1, c)
+	// curl -i http://localhost:8080/api/v1/waifus/1
+}
+
+func GetQuestionNew(c *gin.Context) {
+GetPartsNew("question", "Question", 1, c)
+	// curl -i http://localhost:8080/api/v1/waifus/1
+}
+
 func PostQuestion(c *gin.Context) {
 	if _, err := CheckAndDecodeToken(c.Query("token")); err != nil {
 		c.JSON(403, gin.H{"error": "Invalid token!"})
@@ -51,7 +61,7 @@ func PostQuestion(c *gin.Context) {
 	} else {
 		c.JSON(400, gin.H{"error": "Fields are empty"})
 	}
-}
+	}
 
 	// curl -i -X POST -H "Content-Type: application/json" -d "{ \"firstname\": \"Thea\", \"lastname\": \"Queen\", \"characters\": \"yandere\" }" http://localhost:8080/api/v1/waifus
 }

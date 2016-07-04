@@ -29,20 +29,7 @@
 
 	<article>
 		<p><h2>Setup:</h2>
-  Install Go, mySql, then</p>
-
-<pre><code>  go get github.com/gin-gonic/gin
-  go get github.com/go-sql-driver/mysql
-  go get gopkg.in/gorp.v1
-</code></pre>
-
-<pre><code>  git clone https://github.com/spbisya/waifuWebApp
-</code></pre>
-
-<p>Copy the project to $GOPATH/src/github.com/spbisya/waifuWebApp directory</p>
-
-<pre><code>  go install github.com/spbisya/waifuWebApp &amp;&amp; waifuWebApp
-</code></pre>
+  Install Curl</p>
 
 <h3>UPDATE 06.16.2016</h3>
   **All POST requests should be made with adding ?token=<your token> to path**
@@ -71,18 +58,18 @@
 - Characters
 </code></pre>
 
-<pre><code>  curl -i http://localhost:8080/api/v1/waifus
-  curl -i http://localhost:8080/api/v1/waifus/1
-  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;firstname\&quot;: \&quot;Malcolm\&quot;, \&quot;lastname\&quot;: \&quot;Merlin\&quot;, \&quot;characters\&quot;: \&quot;genka\&quot; }&quot; http://localhost:8080/api/v1/waifus
-  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;firstname\&quot;: \&quot;Thea\&quot;, \&quot;lastname\&quot;: \&quot;Merlyn\&quot;, \&quot;characters\&quot;: \&quot;yandere\&quot; }&quot; http://localhost:8080/api/v1/waifus/1
-  curl -i -X DELETE http://localhost:8080/api/v1/waifus/1
+<pre><code>  curl -i http://volhgroup.tk/api/v1/waifus
+  curl -i http://volhgroup.tk/api/v1/waifus/1
+  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;firstname\&quot;: \&quot;Malcolm\&quot;, \&quot;lastname\&quot;: \&quot;Merlin\&quot;, \&quot;characters\&quot;: \&quot;genka\&quot; }&quot; http://volhgroup.tk/api/v1/waifus
+  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;firstname\&quot;: \&quot;Thea\&quot;, \&quot;lastname\&quot;: \&quot;Merlyn\&quot;, \&quot;characters\&quot;: \&quot;yandere\&quot; }&quot; http://volhgroup.tk/api/v1/waifus/1
+  curl -i -X DELETE http://volhgroup.tk/api/v1/waifus/1
 </code></pre>
 
 <p><h5> Get parts of the sentences</h5></p>
 
-<pre><code>  curl -i http://localhost:8080/words?v=greetings
-  curl -i http://localhost:8080/words?v=questions
-  curl -i http://localhost:8080/words?v=accosts
+<pre><code>  curl -i http://volhgroup.tk/words?v=greetings
+  curl -i http://volhgroup.tk/words?v=questions
+  curl -i http://volhgroup.tk/words?v=accosts
 </code></pre>
 
 <p><strong>Greetings, Accosts and Questions Apis allow you to control three same models:</strong></p>
@@ -96,28 +83,28 @@
 - Texts
 </code></pre>
 
-<pre><code>  curl -i http://localhost:8080/api/greeting
-  curl -i http://localhost:8080/api/greeting/yandere
-  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;Shalom \&quot; }&quot; http://localhost:8080/api/greeting/
-  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;hello\&quot; }&quot; http://localhost:8080/api/greeting/1
-  curl -i -X DELETE http://localhost:8080/api/v1/greeting/1
+<pre><code>  curl -i http://volhgroup.tk/api/greeting
+  curl -i http://volhgroup.tk/api/greeting/yandere
+  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;Shalom \&quot; }&quot; http://volhgroup.tk/api/greeting/
+  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;hello\&quot; }&quot; http://volhgroup.tk/api/greeting/1
+  curl -i -X DELETE http://volhgroup.tk/api/v1/greeting/1
 
-  curl -i http://localhost:8080/api/accost
-  curl -i http://localhost:8080/api/accost/yandere
-  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;baka\&quot; }&quot; http://localhost:8080/api/accost/
-  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;mother\&quot; }&quot; http://localhost:8080/api/accost/1
-  curl -i -X DELETE http://localhost:8080/api/v1/accost/1
+  curl -i http://volhgroup.tk/api/accost
+  curl -i http://volhgroup.tk/api/accost/yandere
+  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;baka\&quot; }&quot; http://volhgroup.tk/api/accost/
+  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;mother\&quot; }&quot; http://volhgroup.tk/api/accost/1
+  curl -i -X DELETE http://volhgroup.tk/api/v1/accost/1
 
-  curl -i http://localhost:8080/api/question
-  curl -i http://localhost:8080/api/question/yandere
-  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;who R u?\&quot; }&quot; http://localhost:8080/api/question/
-  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;how R U?\&quot; }&quot; http://localhost:8080/api/question/1
-  curl -i -X DELETE http://localhost:8080/api/v1/question/1
+  curl -i http://volhgroup.tk/api/question
+  curl -i http://volhgroup.tk/api/question/yandere
+  curl -i -X POST -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;who R u?\&quot; }&quot; http://volhgroup.tk/api/question/
+  curl -i -X PUT -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;characters\&quot;: \&quot;yandere\&quot;, \&quot;texts\&quot;: \&quot;how R U?\&quot; }&quot; http://volhgroup.tk/api/question/1
+  curl -i -X DELETE http://volhgroup.tk/api/v1/question/1
 </code></pre>
 
 <p><strong>Finally, you can create the sentence using 1 part from each model.</strong></p>
 
-<pre><code>  curl -i http://localhost:8080/random
+<pre><code>  curl -i http://volhgroup.tk/random
 </code></pre>
 
 	</article>

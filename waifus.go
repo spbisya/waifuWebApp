@@ -2,8 +2,9 @@ package main
 
 import (
 	"log"
+   "math"
 	"strconv"
-jwt "github.com/dgrijalva/jwt-go"
+	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -18,7 +19,212 @@ func GetWaifus(c *gin.Context) {
 		c.JSON(404, gin.H{"error": "no waifu(s) into the table"})
 	}
 
-	// curl -i http://localhost:8080/api/v1/waifus
+	// curl -i http://volhgroup.tk/api/v1/waifus
+}
+
+func GetWaifuNew(c *gin.Context) {
+	firstname := c.PostForm("first")
+	lastname := c.PostForm("last")
+	character := c.PostForm("character")
+	if firstname != "" && lastname != "" && character != ""{
+		if insert, _ := dbmap.Exec(`INSERT INTO waifu (firstname, lastname, characters) VALUES (?, ?, ?)`, firstname, lastname, character); insert != nil {
+      waifu_id, err := insert.LastInsertId()
+			if err == nil {
+				content := &Waifu{
+          Id:        waifu_id,
+          Firstname: firstname,
+          Lastname:  lastname,
+          Characters: character,
+				}
+				c.HTML(201, "waifu.html", content)
+			} else {
+				c.JSON(201, gin.H{"error": err.Error()})
+			}
+		}
+	} else {
+		c.JSON(400, gin.H{"error": "Fields are empty"})
+	}
+		// curl -i http://volhgroup.tk/api/v1/waifus
+}
+
+
+func GetAllWaifusHTML(c *gin.Context){
+  query:=c.DefaultQuery("page", "1")
+  page, _:= strconv.Atoi(query);
+  var posts []Waifu
+  _, err := dbmap.Select(&posts, "SELECT * FROM waifu")
+  posts = ReverseArrayW(posts)
+  pagesCount:=int(math.Ceil(float64(len(posts))/10))
+
+  switch page {
+  case 1:
+  isNext:=CheckIfHasNextW(page, len(posts))
+  isLast:=!isNext
+	more:=false
+  if pagesCount>5 {
+    pagesCount = 5
+		more =true
+  }
+
+
+  array:=make([]Page, pagesCount)
+  for i:=1;i<=pagesCount;i++ {
+    content:=false
+    if i == 1{
+      content=true
+    }
+  array[i-1] = Page{
+    Number: i,
+    Current: content,
+    }
+  }
+  	if err == nil {
+			posts1:=posts
+			if len(posts)<10 {
+				posts1=posts[0:len(posts)]
+			}	else{
+				posts1 = posts[0:10]
+			}
+      c.HTML(200, "allWaifus.html", gin.H{
+                  "Waifus": posts1,
+                  "Page": 1,
+                  "Next": 2,
+                  "Previous": 0,
+                  "IsNext": isNext,
+                  "IsPrevious": false,
+                  "Count": array,
+                  "IsFirst": true,
+                  "IsLast": isLast,
+                  "Last": int(math.Ceil(float64(len(posts))/10)),
+                  "More": more,
+                  "Less": false,
+              })
+    } else {
+      checkErr(err, "Couldn't get Waifus")
+      c.JSON(404, gin.H{"error": "Couldn't get waifus"})
+    }
+
+  case 2:
+  isNext:=CheckIfHasNextW(page, len(posts))
+  isLast:=!isNext
+	more:=false
+	if pagesCount>5 {
+		pagesCount = 5
+		more =true
+	}
+  array:=make([]Page, pagesCount)
+  for i:=1;i<=pagesCount;i++ {
+    content:=false
+    if i == 2{
+      content=true
+    }
+  array[i-1] = Page{
+    Number: i,
+    Current: content,
+    }
+  }
+    if err == nil {
+			posts1:=posts
+			if len(posts)<20 {
+				posts1=posts[10:len(posts)]
+			}	else{
+				posts1 = posts[0:20]
+			}
+      c.HTML(200, "allWaifus.html", gin.H{
+                  "Waifus": posts1,
+                  "Page": 2,
+                  "Next": 3,
+                  "Previous": 1,
+                  "IsNext": isNext,
+                  "IsPrevious": true,
+                  "Count": array,
+                  "IsFirst": true,
+                  "IsLast": isLast,
+                  "Last": int(math.Ceil(float64(len(posts))/10)),
+                  "More": more,
+                  "Less": false,
+              })
+    } else {
+      checkErr(err, "Couldn't get waifus")
+      c.JSON(404, gin.H{"error": "Couldn't get waifus"})
+    }
+
+  case 3:
+  isNext:=CheckIfHasNextW(page, len(posts))
+  isLast:=!isNext
+	more:=false
+	if pagesCount>5 {
+		pagesCount = 5
+		more =true
+	}
+  array:=make([]Page, pagesCount)
+  for i:=1;i<=pagesCount;i++ {
+    content:=false
+    if i == 3{
+      content=true
+    }
+  array[i-1] = Page{
+    Number: i,
+    Current: content,
+    }
+  }
+    if err == nil {
+			posts1:=posts
+			if len(posts)<30 {
+				posts1=posts[20:len(posts)]
+			}	else{
+				posts1 = posts[20:30]
+			}
+			c.HTML(200, "allWaifus.html", gin.H{
+									"Waifus": posts1,
+                  "Page": 3,
+                  "Next": 4,
+                  "Previous": 3,
+                  "IsNext": isNext,
+                  "IsPrevious": true,
+                  "Count": array,
+                  "IsFirst": true,
+                  "IsLast": isLast,
+                  "Last": int(math.Ceil(float64(len(posts))/10)),
+                  "More": more,
+                  "Less": false,
+              })
+    } else {
+			checkErr(err, "Couldn't get waifus")
+			c.JSON(404, gin.H{"error": "Couldn't get waifus"})
+    }
+  default:
+    pagesCount=3;
+  isNext:=CheckIfHasNextW(page, len(posts))
+  isLast:=!CheckIfHasNextW(page, len(posts))
+  more:=CheckIfHasNextW(page+1, len(posts))
+  less:=CheckIfHasNextW(page-1, len(posts))
+      if err == nil {
+				posts1:=posts
+				if len(posts)<page*10 {
+					posts1=posts[(page-1)*10:len(posts)]
+				}	else{
+					posts1 = posts[(page-1)*10:page*10]
+				}
+	      c.HTML(200, "allWaifus.html", gin.H{
+	                  "Waifus": posts1,
+                    "Page": page,
+                    "Next": page+1,
+                    "Previous": page-1,
+                    "IsNext": isNext,
+                    "IsPrevious": true,
+                    "Count": GetArray(len(posts), page),
+                    "IsFirst": false,
+                    "IsLast": isLast,
+                    "Last": int(math.Ceil(float64(len(posts))/10)),
+                    "More": more,
+                    "Less": less,
+                })
+      } else {
+				checkErr(err, "Couldn't get waifus")
+				c.JSON(404, gin.H{"error": "Couldn't get waifus"})
+      }
+    }
 }
 
 func GetWaifu(c *gin.Context) {
@@ -40,7 +246,7 @@ func GetWaifu(c *gin.Context) {
 		c.JSON(404, gin.H{"error": "waifu not found"})
 	}
 
-	// curl -i http://localhost:8080/api/v1/waifus/1
+	// curl -i http://volhgroup.tk/api/v1/waifus/1
 }
 
 func GetWaifuByCharacter(c *gin.Context) {
@@ -53,7 +259,7 @@ func GetWaifuByCharacter(c *gin.Context) {
 	} else {
 		c.JSON(404, gin.H{"error": "no waifu(s) into the table"})
 	}
-	// curl -i http://localhost:8080/api/v1/waifus/1
+	// curl -i http://volhgroup.tk/api/v1/waifus/1
 }
 
 func PostWaifu(c *gin.Context) {
@@ -86,7 +292,7 @@ func PostWaifu(c *gin.Context) {
 		c.JSON(400, gin.H{"error": "Fields are empty"})
 	}
 }
-	// curl -i -X POST -H "Content-Type: application/json" -d "{ \"firstname\": \"Thea\", \"lastname\": \"Queen\", \"characters\": \"yandere\" }" http://localhost:8080/api/waifus/?token=gD8DgA265rCFsOmPLSM0tk3TCKENFYeUV8IFd4Un14.xuyInMlpXCmpvpfAjRVzaMhxMBHrBmzv67LxMqJhtu5gqEKfpTQqtbV.Aq3t7Nl5Q5d7b5E5VZe7qDOVeuZR8ud9mPXBjJ7wSL61azkuuCiscVpjL6r5xbaoSy7H2ZyAfg1k54AkqYLj@5T@oqC9xbcT55R1ZyeQFqNAh.FENztmnN0huv99OBC2pX2H@wA1U3VefuUoSg0YCtUIb@hDXsnM.aRS0PaAaJeh8nJ1b7Snxxmihf4JWVoW44OEli3muA2x7YVhRl8nbCpJWhwioZnKUDpXpaeS5aO4FeyOigRBkvptn5GpcxQEa6@j2W4ezZSVjlT2ny7u0@5han1ANVOVGEXSiW3nwklJq3ZEr@qogDHjkUSSnFVYn6E
+	//  curl -i -X POST -H "Content-Type: application/json" -d "{ \"firstname\": \"Misato\", \"lastname\": \"Sakurai\", \"characters\": \"genke\" }" http://volhgroup.tk/api/waifus/?token=QGWi3yN4RZjZ7TowJs6067FcWyJfgzzbou9As05Bo1@FjxtfPzj5kwLbPJJXRifqb@23m4uTpxp7D@JSEK1MZwMbgRritUFBR4MWkaULhm2iNYHiUt1egxq13OW056GtCdo3ZN9qNTr7gyW4PMGKsSgmFGIf.k6xqtVjhTtMkRnW8dDm6zyzRsHzEQVzJkK07n8O6q3LBPQgH8zC9GXQh7IWG2s91YCce.SPWenSdUqrGIuEUyiRS85KM4R1qWUPf1Y2Iclrsh9ro8W@pf4TWs28lFKVXdsAA9pp4ZtJ3dX8gbkJgF6.6fZ.GnxAlHFLRhj0fiSukUq4yWJR26pCyjvMDOGXXwS3f8OiaDrOXi5eqU1hJXywcfQ4UfdVh4vSZSdsPAE0CgazZ@R4dRlsSjv9h.Xs.u7m.2d75S
 }
 
 func UpdateWaifu(c *gin.Context) {
@@ -127,7 +333,7 @@ func UpdateWaifu(c *gin.Context) {
 		c.JSON(404, gin.H{"error": "waifu not found"})
 	}
 }
-	 // curl -i -X PUT -H "Content-Type: application/json" -d "{ \"firstname\": \"Thea\", \"lastname\": \"Merlyn\" }" http://localhost:8080/api/v1/waifus/1
+	 // curl -i -X PUT -H "Content-Type: application/json" -d "{ \"firstname\": \"Thea\", \"lastname\": \"Merlyn\" }" http://volhgroup.tk/api/v1/waifus/1
 }
 
 func DeleteWaifu(c *gin.Context) {
@@ -156,5 +362,5 @@ func DeleteWaifu(c *gin.Context) {
 	}
 }
 }
-	// curl -i -X DELETE http://localhost:8080/api/v1/waifus/1
+	// curl -i -X DELETE http://volhgroup.tk/api/v1/waifus/1
 }

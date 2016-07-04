@@ -24,6 +24,17 @@ func GetAccostsChar(c *gin.Context) {
 	// curl -i http://localhost:8080/api/v1/waifus/1
 }
 
+
+func GetAllAccostsHTML(c *gin.Context) {
+	GetAllPartsHTML("accost", "Accost", 2, c)
+	// curl -i http://localhost:8080/api/v1/waifus/1
+}
+
+func GetAccostNew(c *gin.Context) {
+GetPartsNew("accost", "Accost", 2, c)
+	// curl -i http://localhost:8080/api/v1/waifus/1
+}
+
 func PostAccost(c *gin.Context) {
 	if _, err := CheckAndDecodeToken(c.Query("token")); err != nil {
 		c.JSON(403, gin.H{"error": "Invalid token!"})

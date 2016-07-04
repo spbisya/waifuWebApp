@@ -39,6 +39,7 @@ if err == nil {
 } else {
 checkErr(err, "Random Failed! ")
 }
+// curl -i http://volhgroup.tk/random?v=genke
 }
 
 func GetRandomPost(c *gin.Context){
@@ -60,16 +61,38 @@ func GetRandomPost(c *gin.Context){
 
 func GetAllPosts(c *gin.Context){
   query:=c.DefaultQuery("page", "1")
-  page, _:= strconv.ParseInt(query, 16, 32);
-  switch page {
-  case 1:
-    var posts []Post
-  	_, err := dbmap.Select(&posts, "SELECT * FROM post")
+  page, _:= strconv.Atoi(query);
+  var posts []Post
+  _, err := dbmap.Select(&posts, "SELECT * FROM post")
   posts = ReverseArray(posts)
   var newPosts []PostForSite
-  newPosts = GetTags(posts[0:4])
+  pagesCount:=int(math.Ceil(float64(len(posts))/4))
+
+  switch page {
+  case 1:
+  if len(posts)<4 {
+    newPosts = GetTags(posts[0:len(posts)])
+  } else {
+    newPosts = GetTags(posts[0:4])
+  }
   isNext:=CheckIfHasNext(page, len(posts))
-  isLast:=!CheckIfHasNext(page, len(posts))
+  isLast:=!isNext
+
+  if pagesCount>5 {
+    pagesCount = 5
+  }
+  array:=make([]Page, pagesCount)
+  for i:=1;i<=pagesCount;i++ {
+    content:=false
+    if i == 1{
+      content=true
+    }
+  array[i-1] = Page{
+    Number: i,
+    Current: content,
+    }
+  }
+
   	if err == nil {
       c.HTML(200, "posts.html", gin.H{
                   "Posts": newPosts,
@@ -78,65 +101,125 @@ func GetAllPosts(c *gin.Context){
                   "Previous": 0,
                   "IsNext": isNext,
                   "IsPrevious": false,
-                  "Count": GetArray(len(posts), 1),
+                  "Count": array,
                   "IsFirst": true,
                   "IsLast": isLast,
                   "Last": int(math.Ceil(float64(len(posts))/4)),
+                  "More": true,
+                  "Less": false,
+              })
+    } else {
+      checkErr(err, "Couldn't get Posts")
+      c.JSON(404, gin.H{"error": "Couldn't generate post"})
+    }
+
+  case 2:
+  if len(posts)<4 {
+    newPosts = GetTags(posts[0:len(posts)])
+  } else {
+    newPosts = GetTags(posts[4:8])
+  }
+  isNext:=CheckIfHasNext(page, len(posts))
+  isLast:=!isNext
+  if pagesCount>5 {
+    pagesCount = 5
+  }
+  array:=make([]Page, pagesCount)
+  for i:=1;i<=pagesCount;i++ {
+    content:=false
+    if i == 2{
+      content=true
+    }
+  array[i-1] = Page{
+    Number: i,
+    Current: content,
+    }
+  }
+    if err == nil {
+      c.HTML(200, "posts.html", gin.H{
+                  "Posts": newPosts,
+                  "Page": 2,
+                  "Next": 3,
+                  "Previous": 1,
+                  "IsNext": isNext,
+                  "IsPrevious": true,
+                  "Count": array,
+                  "IsFirst": true,
+                  "IsLast": isLast,
+                  "Last": int(math.Ceil(float64(len(posts))/4)),
+                  "More": true,
+                  "Less": false,
+              })
+    } else {
+      checkErr(err, "Couldn't get Posts")
+      c.JSON(404, gin.H{"error": "Couldn't generate post"})
+    }
+
+  case 3:
+
+  isNext:=CheckIfHasNext(page, len(posts))
+  isLast:=!isNext
+  if pagesCount>5 {
+    pagesCount = 5
+  }
+  array:=make([]Page, pagesCount)
+  for i:=1;i<=pagesCount;i++ {
+    content:=false
+    if i == 3{
+      content=true
+    }
+  array[i-1] = Page{
+    Number: i,
+    Current: content,
+    }
+  }
+    if err == nil {
+      c.HTML(200, "posts.html", gin.H{
+                  "Posts": newPosts,
+                  "Page": 3,
+                  "Next": 4,
+                  "Previous": 3,
+                  "IsNext": isNext,
+                  "IsPrevious": true,
+                  "Count": array,
+                  "IsFirst": true,
+                  "IsLast": isLast,
+                  "Last": int(math.Ceil(float64(len(posts))/4)),
+                  "More": true,
+                  "Less": false,
               })
     } else {
       checkErr(err, "Couldn't get Posts")
       c.JSON(404, gin.H{"error": "Couldn't generate post"})
     }
   default:
-    var posts []Post
-    _, err := dbmap.Select(&posts, "SELECT * FROM post")
-    posts = ReverseArray(posts)
-    var newPosts []PostForSite
+    pagesCount=3;
       newPosts = GetTags(posts[(page-1)*4:page*4])
-isNext:=CheckIfHasNext(page, len(posts))
-isLast:=!CheckIfHasNext(page, len(posts))
-    if err == nil {
-      c.HTML(200, "posts.html", gin.H{
-                  "Posts": newPosts,
-                  "Page": page,
-                  "Next": page+1,
-                  "Previous": page-1,
-                  "IsNext": isNext,
-                  "IsPrevious": true,
-                  "Count": GetArray(len(posts), page),
-                  "IsFirst": false,
-                  "IsLast": isLast,
-                  "Last": int(math.Ceil(float64(len(posts))/4)),
-              })
-    } else {
-      checkErr(err, "Couldn't get Posts")
-      c.JSON(404, gin.H{"error": "Couldn't generate post"})
+  isNext:=CheckIfHasNext(page, len(posts))
+  isLast:=!CheckIfHasNext(page, len(posts))
+  more:=CheckIfHasNext(page+1, len(posts))
+  less:=CheckIfHasNext(page-1, len(posts))
+      if err == nil {
+        c.HTML(200, "posts.html", gin.H{
+                    "Posts": newPosts,
+                    "Page": page,
+                    "Next": page+1,
+                    "Previous": page-1,
+                    "IsNext": isNext,
+                    "IsPrevious": true,
+                    "Count": GetArray(len(posts), page),
+                    "IsFirst": false,
+                    "IsLast": isLast,
+                    "Last": int(math.Ceil(float64(len(posts))/4)),
+                    "More": more,
+                    "Less": less,
+                })
+      } else {
+        checkErr(err, "Couldn't get Posts")
+        c.JSON(404, gin.H{"error": "Couldn't generate post"})
+      }
     }
-  }
 }
-
-func GetArray(c int, curr int64) []Page{
-  array:=make([]Page, int(math.Ceil(float64(c)/4)))
-  for i:=1;i<int(math.Ceil(float64(c)/4))+1;i++ {
-    current:=false
-    if int64(i) == curr{
-      current = true
-    }
-    array[i-1] = Page{
-      Number: i,
-      Current: current,
-    }
-  }
-  return array
-}
-
-func CheckIfHasNext(c int64, l int) bool{
-  if c<int64(math.Ceil(float64(l)/4)) {
-    return true
-  }
-  return false
-}
-
 
 
 

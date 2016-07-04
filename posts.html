@@ -73,12 +73,22 @@
                   </a>
                 </li>
                 {{end}}
+                {{if .Less}}
+                <li class="disabled">
+                    <span aria-hidden="true">...</span>
+                </li>
+                {{end}}
                 {{range .Count}}
                 {{if .Current}}
                 <li class="active"><a href="/allposts?page={{.Number}}">{{.Number}}</a></li>
                 {{else}}
                   <li><a href="/allposts?page={{.Number}}">{{.Number}}</a></li>
                 {{end}}
+                {{end}}
+                {{if .More}}
+                <li class="disabled">
+                    <span aria-hidden="true">...</span>
+                </li>
                 {{end}}
                 {{if .IsNext}}
                 <li>

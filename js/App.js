@@ -41,7 +41,7 @@ $(document).ready(function() {
 	}
 
 	// Load world json file
-	d3.json(window.baseURL + "/js/world.json", function(error, world) {
+	d3.json(window.baseURL + "js/world.json", function(error, world) {
 		if (error) {
 			return;
 		}

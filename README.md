@@ -1,5 +1,8 @@
 # Api for Waifu Sim 0.1
 
+##UPDATE 07.04.2016 Independenсe day
+  **Created screens for creation and viewing waifus, questions, accosts and greetings. Visit volhgroup.tk to see changes**
+
 ##UPDATE 06.16.2016
   **All POST requests should be made with adding ?token=<your token> to path**
   
